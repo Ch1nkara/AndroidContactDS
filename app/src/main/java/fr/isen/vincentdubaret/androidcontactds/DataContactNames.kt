@@ -4,4 +4,4 @@ data class DataContactNames(
     val title: String,
     val first: String,
     val last: String
-)
+) : java.io.Serializable

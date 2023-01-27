@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-internal class ContactAdapter(private var myContext : Context, private var contactList: ArrayList<DataContactDetails>/*, private val listener: (ContactDetails) -> Unit*/) : RecyclerView.Adapter<ContactAdapter.MyViewHolder>() {
+internal class ContactAdapter(private var myContext : Context, private var contactList: ArrayList<DataContactDetails>, private val listener: (DataContactDetails) -> Unit) : RecyclerView.Adapter<ContactAdapter.MyViewHolder>() {
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageAvatar: ImageView = view.findViewById(R.id.image_avatar)
@@ -36,7 +36,7 @@ internal class ContactAdapter(private var myContext : Context, private var conta
         } else {
             holder.imageAvatar.setImageResource(R.drawable.user)
         }
-        //holder.itemView.setOnClickListener { listener(item) }
+        holder.itemView.setOnClickListener { listener(item) }
     }
 
     override fun getItemCount(): Int = contactList.size

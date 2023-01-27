@@ -11,6 +11,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 
 import fr.isen.vincentdubaret.androidcontactds.databinding.ActivityMainBinding
+import java.io.Serializable
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +32,6 @@ class MainActivity : AppCompatActivity() {
                 Method.GET, "https://randomuser.me/api/?results=10&nat=fr",
                 Response.Listener { response ->
                     parsedData = Gson().fromJson(response, DataResult::class.java)
-                    Log.d("####HUMAN####", parsedData.toString())
                     renderMenu()
                 },
                 Response.ErrorListener { error ->
@@ -41,21 +41,19 @@ class MainActivity : AppCompatActivity() {
         Volley.newRequestQueue(this).add(stringReq)
     }
     private fun renderMenu() {
-        val list = arrayListOf(1, 2, 3)
-        myContactAdapter = ContactAdapter(this, parsedData.results) /*{
-                contactDetails: ContactDetails -> myOnClickItem(contactDetails)
-        }*/
+        myContactAdapter = ContactAdapter(this, parsedData.results) {
+                contactDetails: DataContactDetails -> myOnClickItem(contactDetails)
+        }
         val layoutManager = LinearLayoutManager(applicationContext)
         binding.contactsRecycleView.layoutManager = layoutManager
         binding.contactsRecycleView.adapter = myContactAdapter
     }
 
     //Onclick function to pass to recycle items
-   // private fun myOnClickItem(contactDetails: ContactDetails){
-   //     //Log.d("##########HUMAN############", message)
-   //     val myIntent = Intent(this@MainActivity, ContactDetailActivity::class.java)
-   //     myIntent.putExtra("contact_details", contactDetails as Serializable)
-   //     startActivity(myIntent)
-   // }
+    private fun myOnClickItem(contactDetails: DataContactDetails){
+        val myIntent = Intent(this@MainActivity, ContactDetailsActivity::class.java)
+        myIntent.putExtra("contact_details", contactDetails as Serializable)
+        startActivity(myIntent)
+    }
 
 }

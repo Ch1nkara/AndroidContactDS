@@ -7,4 +7,4 @@ data class DataContactDetails (
     val dob: DataDob,
     val cell: String,
     val picture: DataPicture,
-)
+) : java.io.Serializable
