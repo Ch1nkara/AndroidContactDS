@@ -1,11 +1,12 @@
 package fr.isen.vincentdubaret.androidcontactds
 
 import android.graphics.*
-import com.squareup.picasso.Transformation;
+import com.squareup.picasso.Transformation
+import kotlin.math.min
 
 class CircleTransform : Transformation {
     override fun transform(source: Bitmap): Bitmap {
-        val size = Math.min(source.width, source.height)
+        val size = min(source.width, source.height)
         val x = (source.width - size) / 2
         val y = (source.height - size) / 2
         val squaredBitmap = Bitmap.createBitmap(source, x, y, size, size)

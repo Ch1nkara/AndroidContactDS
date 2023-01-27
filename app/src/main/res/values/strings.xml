@@ -5,4 +5,8 @@
     <string name="main_greeting">Affichage des contacts</string>
     <string name="main_imageDescription">person\'s avatar</string>
 
+    <string name="full_name">%s %s</string>
+    <string name="street_full">%s %s</string>
+    <string name="birthdate">%s/%s/%s</string>
+
 </resources>

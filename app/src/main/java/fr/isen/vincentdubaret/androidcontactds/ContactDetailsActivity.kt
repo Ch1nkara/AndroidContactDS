@@ -2,12 +2,9 @@ package fr.isen.vincentdubaret.androidcontactds
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.squareup.picasso.Picasso
 
 import fr.isen.vincentdubaret.androidcontactds.databinding.ActivityContactDetailsBinding
-import java.text.DateFormat
-import java.util.*
 
 class ContactDetailsActivity : AppCompatActivity() {
 
@@ -29,10 +26,15 @@ class ContactDetailsActivity : AppCompatActivity() {
         } else {
             binding.imageAvatar.setImageResource(R.drawable.user)
         }
-        binding.textName.text = myContactDetails.name.first + " " + myContactDetails.name.last.uppercase()
-        binding.textAddress.text = myContactDetails.location.street.number + " " + myContactDetails.location.street.name
+        binding.textName.text = this.getString(R.string.full_name, myContactDetails.name.first, myContactDetails.name.last.uppercase())
+        binding.textAddress.text = this.getString(R.string.street_full, myContactDetails.location.street.number, myContactDetails.location.street.name)
         binding.textMail.text = myContactDetails.email
         binding.textPhone.text = myContactDetails.cell.replace("-", " ")
-        binding.textBirthday.text =  myContactDetails.dob.date.substring(8,10) + "/" + myContactDetails.dob.date.substring(5,7) + "/" + myContactDetails.dob.date.substring(0,4)
+        binding.textBirthday.text =  this.getString(
+            R.string.birthdate,
+            myContactDetails.dob.date.substring(8,10),
+            myContactDetails.dob.date.substring(5,7),
+            myContactDetails.dob.date.substring(0,4)
+        )
     }
 }
