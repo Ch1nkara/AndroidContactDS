@@ -26,7 +26,7 @@ internal class ContactAdapter(private var myContext : Context, private var conta
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = contactList[position]
-        holder.textName.text = item.name.first + " " + item.name.last
+        holder.textName.text = item.name.first + " " + item.name.last.uppercase()
         holder.textAddress.text = item.location.street.number + " " + item.location.street.name
         holder.textMail.text = item.email
         if (item.picture.medium.isNotEmpty()) {

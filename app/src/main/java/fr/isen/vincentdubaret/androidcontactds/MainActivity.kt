@@ -9,10 +9,9 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
-
-import fr.isen.vincentdubaret.androidcontactds.databinding.ActivityMainBinding
 import java.io.Serializable
 
+import fr.isen.vincentdubaret.androidcontactds.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
