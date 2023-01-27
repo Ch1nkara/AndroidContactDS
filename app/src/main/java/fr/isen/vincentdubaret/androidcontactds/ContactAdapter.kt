@@ -31,6 +31,7 @@ internal class ContactAdapter(private var myContext : Context, private var conta
         holder.textMail.text = item.email
         if (item.picture.medium.isNotEmpty()) {
             Picasso.with(myContext).load(item.picture.medium)
+                .transform(CircleTransform())
                 .error(R.drawable.user)
                 .into(holder.imageAvatar)
         } else {

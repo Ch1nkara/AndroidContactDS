@@ -9,6 +9,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import java.io.Serializable
 
 import fr.isen.vincentdubaret.androidcontactds.databinding.ActivityMainBinding
@@ -30,7 +31,8 @@ class MainActivity : AppCompatActivity() {
             object : StringRequest(
                 Method.GET, "https://randomuser.me/api/?results=10&nat=fr",
                 Response.Listener { response ->
-                    parsedData = Gson().fromJson(response, DataResult::class.java)
+                    val gson = GsonBuilder().setDateFormat("dd/MM/yyyy").create()
+                    parsedData = gson.fromJson(response, DataResult::class.java)
                     renderMenu()
                 },
                 Response.ErrorListener { error ->

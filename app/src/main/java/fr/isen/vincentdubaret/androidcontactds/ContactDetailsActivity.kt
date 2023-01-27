@@ -6,6 +6,8 @@ import android.util.Log
 import com.squareup.picasso.Picasso
 
 import fr.isen.vincentdubaret.androidcontactds.databinding.ActivityContactDetailsBinding
+import java.text.DateFormat
+import java.util.*
 
 class ContactDetailsActivity : AppCompatActivity() {
 
@@ -21,6 +23,7 @@ class ContactDetailsActivity : AppCompatActivity() {
         val myContactDetails = intent.extras?.get("contact_details") as DataContactDetails
         if (myContactDetails.picture.large.isNotEmpty()) {
             Picasso.with(this).load(myContactDetails.picture.large)
+                .transform(CircleTransform())
                 .error(R.drawable.user)
                 .into(binding.imageAvatar)
         } else {
@@ -29,7 +32,7 @@ class ContactDetailsActivity : AppCompatActivity() {
         binding.textName.text = myContactDetails.name.first + " " + myContactDetails.name.last.uppercase()
         binding.textAddress.text = myContactDetails.location.street.number + " " + myContactDetails.location.street.name
         binding.textMail.text = myContactDetails.email
-        binding.textPhone.text = myContactDetails.cell
-        binding.textBirthday.text = myContactDetails.dob.date
+        binding.textPhone.text = myContactDetails.cell.replace("-", " ")
+        binding.textBirthday.text =  myContactDetails.dob.date.substring(8,10) + "/" + myContactDetails.dob.date.substring(5,7) + "/" + myContactDetails.dob.date.substring(0,4)
     }
 }
