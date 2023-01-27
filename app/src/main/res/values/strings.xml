@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AndroidContactDS</string>
+    <string name="not_initialized">Not_initialized</string>
+
+    <string name="main_greeting">Affichage des contacts</string>
+    <string name="main_imageDescription">person\'s avatar</string>
+
 </resources>
